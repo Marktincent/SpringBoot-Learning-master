@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>userList用户列表</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+
+    <link rel="stylesheet" th:href="@{/easyui/themes/bootstrap/easyui.css}"/>
+
+    <script type="text/javascript" th:src="@{/js/jquery.min1.7.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.easyui.min.js}"></script>
+</head>
+<body class="container">
+<br/>
+<h1>用户列表</h1>
+<br/><br/>
+<div class="easyui-tabs" style="width:100%;height:100%">
+    <div title="用户列表" style="padding:10px">
+        <div class="with:80%">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>User Name</th>
+                    <th>Password</th>
+                    <th>Age</th>
+                    <th></th>
+                    <th><a  th:href="@{/toAdd}" class="btn btn-info">add</a></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user : ${users}">
+                    <th scope="row" th:text="${user.id}"></th>
+                    <td th:text="${user.userName}">neo</td>
+                    <td th:text="${user.password}">Otto</td>
+                    <td th:text="${user.age}">6</td>
+                    <td><a th:href="@{/toEdit(id=${user.id})}">edit</a></td>
+                    <td><a th:href="@{/delete(id=${user.id})}">delete</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div title="My Documents" style="padding:10px">
+        <ul class="easyui-tree" data-options="url:'tree_data1.json',method:'get',animate:true"></ul>
+    </div>
+    <div title="Help" data-options="iconCls:'icon-help',closable:true" style="padding:10px">
+        This is the help content.
+    </div>
+</div>
+</body>
+</html>
